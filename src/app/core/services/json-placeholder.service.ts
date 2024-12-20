@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPost, IUser } from '../interfaces';
+import { IPost } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class JsonPlaceholderService {
     return this.http.get<IPost[]>(`${this.baseUrl}/posts`);
   }
 
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.baseUrl}/users`);
+  getPostsWithPage(page: number, limit: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/posts?_page=${page}&_limit=${limit}`);
   }
 }
